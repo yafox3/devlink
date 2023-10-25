@@ -1,10 +1,8 @@
-import Auth from '../pages/Auth'
-import Dashboard from '../pages/Dashboard'
-import DevCard from '../pages/DevCard'
-import Editor from '../pages/Editor'
-import ErrorPage from '../pages/ErrorPage'
-import Home from '../pages/Home'
-import Layout from '../pages/Layout'
-import Profile from '../pages/Profile'
-
-export { Auth, Dashboard, DevCard, Editor, ErrorPage, Home, Layout, Profile }
+export { Auth } from '../pages/Auth'
+export { Dashboard } from '../pages/Dashboard'
+export { DevCard } from '../pages/DevCard'
+export { Editor } from '../pages/Editor'
+export { ErrorPage } from '../pages/ErrorPage'
+export { Home } from '../pages/Home'
+export { Layout } from '../pages/Layout'
+export { Profile } from '../pages/Profile'

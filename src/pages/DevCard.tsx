@@ -4,4 +4,4 @@ const DevCard: FC = () => {
 	return <div>DevCard</div>
 }
 
-export default DevCard
+export { DevCard }

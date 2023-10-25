@@ -4,4 +4,4 @@ const Editor: FC = () => {
 	return <div>Editor</div>
 }
 
-export default Editor
+export { Editor }
