@@ -12,4 +12,7 @@
 	.container {
 		@apply max-w-[1030px]
 	}
+	.btn {
+		@apply px-6 py-2 text-xl bg-blue-700 text-white rounded-md hover:bg-blue-900 transition-colors
+	}
 }
