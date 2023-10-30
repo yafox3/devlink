@@ -3,7 +3,7 @@ import { IRoute } from '../models/route'
 import { Auth, Dashboard, DevCard, Editor, ErrorPage, Home, Layout, Profile } from '../pages'
 
 // temp variable
-export const isAuth = true
+export const isAuth = false
 
 const publicRoutes: IRoute[] = [
 	{
