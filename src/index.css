@@ -13,9 +13,12 @@
 		@apply max-w-[1030px]
 	}
 	.btn {
-		@apply px-8 py-3 text-base bg-blue-700 text-white rounded-xl hover:bg-blue-900 transition-colors
+		@apply px-10 py-3 text-base bg-blue-700 text-white rounded-xl hover:bg-blue-900 transition-colors
 	}
 	.title {
 		@apply text-blue-900 text-center text-4xl
+	}
+	.input {
+		@apply rounded-lg border-black/10 placeholder:text-sm py-3.5 block mt-2
 	}
 }
