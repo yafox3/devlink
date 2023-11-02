@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import example from '../assets/images/home/example.jpg'
+import { isAuth } from '../router/router'
 
 const Home: FC = () => {
 	return (
@@ -11,7 +12,7 @@ const Home: FC = () => {
 				developer's work networks. (GitHub, LinkedIn, YouTube are supported)
 			</p>
 			<img className='mb-8' src={example} alt="The devlink example" />
-			<Link to='auth' className='btn'>Get started</Link>
+			<Link to={isAuth ? 'dashboard' : 'auth'} className='btn'>Get started</Link>
 		</div>
 	)
 }

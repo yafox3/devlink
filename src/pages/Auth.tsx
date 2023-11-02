@@ -1,9 +1,12 @@
 import { FC, useState } from 'react'
 import { Input } from '../components'
+import { IUserData } from '../models/user'
+import { AuthService } from '../services/auth.service'
+import { isAxiosError } from 'axios'
 
 const Auth: FC = () => {
 	const [isLogin, setIsLogin] = useState<boolean>(false)
-	const [user, setUser] = useState({
+	const [userData, setUserData] = useState<IUserData>({
 		email: '',
 		password: ''
 	})
@@ -13,14 +16,28 @@ const Auth: FC = () => {
 		setIsLogin(prev => !prev)
 	}
 
-	const loginHandler = (event: React.FormEvent<HTMLFormElement>) => {
+	const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		console.log(user, 'you was attempted login')
+		try {
+			const user = await AuthService.login(userData)
+			console.log(user)
+		} catch (error) {
+			if (isAxiosError(error)) {
+				console.log(error.message)
+			}
+		}
 	}
 
-	const signUpHandler = (event: React.FormEvent<HTMLFormElement>) => {
+	const signUpHandler = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		console.log(user, 'you was attempted signup')
+		try {
+			const user = await AuthService.register(userData)
+			console.log(user)
+		} catch (error) {
+			if (isAxiosError(error)) {
+				console.log(error.message)
+			}
+		}
 	}
 	
 	return (
@@ -39,8 +56,8 @@ const Auth: FC = () => {
 					placeholder='Enter your email here'
 					label='Email'
 					className='w-full'
-					value={user.email}
-					onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUser({...user, email: event.target.value})}
+					value={userData.email}
+					onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUserData({...userData, email: event.target.value})}
 				/> 
 				<Input
 					required
@@ -48,8 +65,8 @@ const Auth: FC = () => {
 					placeholder='Enter your password here'
 					label='Password'
 					className='w-full'
-					value={user.password}
-					onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUser({...user, password: event.target.value})}
+					value={userData.password}
+					onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUserData({...userData, password: event.target.value})}
 				/>
 			</form>
 

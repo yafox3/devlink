@@ -3,7 +3,7 @@ import { Auth, Dashboard, DevCard, Editor, ErrorPage, Home, Layout, Profile } fr
 import { ProtectedRoutes } from '../components'
 
 // temp variable
-export const isAuth = true
+export const isAuth = false
 
 export const router = createBrowserRouter([
 	{
@@ -43,11 +43,11 @@ export const router = createBrowserRouter([
 						<Editor />
 					</ProtectedRoutes>
 				)
-			},
-			{
-				path: 'devcard/:id',
-				element: <DevCard />
 			}
-		]
+		],
+	},
+	{
+		path: 'devcard/:id',
+		element: <DevCard />
 	}
 ])
