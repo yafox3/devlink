@@ -12,7 +12,7 @@ const Header: FC = () => {
 					<span className='text-3xl font-semibold text-blue-700 ml-1'>devlink</span>
 				</Link>
 
-				<nav className='ml-auto flex gap-6'>
+				<nav className='ml-auto flex gap-10'>
 					{isAuth ? (
 						<>
 							<NavLink
@@ -27,11 +27,18 @@ const Header: FC = () => {
 							</NavLink>
 						</>
 					) : (
-						<NavLink
-							to='/auth'
-							className='text-lg text-blue-700 font-semibold hover:text-blue-800 transition-colors'>
-							Login
-						</NavLink>
+						<>
+							<NavLink
+								to='/'
+								className='text-lg text-blue-700 font-semibold hover:text-blue-800 transition-colors'>
+								Info
+							</NavLink>
+							<NavLink
+								to='/auth'
+								className='text-lg text-blue-700 font-semibold hover:text-blue-800 transition-colors'>
+								Login
+							</NavLink>
+						</>
 					)}
 				</nav>
 			</div>
