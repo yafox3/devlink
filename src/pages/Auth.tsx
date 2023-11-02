@@ -22,7 +22,7 @@ const Auth: FC = () => {
 		event.preventDefault()
 		console.log(user, 'you was attempted signup')
 	}
-
+	
 	return (
 		<div className='py-10 max-w-[400px] w-full mx-auto'>
 			<h1 className='title mb-10'>{isLogin ? 'Login' : 'Sign up'}</h1>
@@ -68,3 +68,4 @@ const Auth: FC = () => {
 }
 
 export { Auth }
+
