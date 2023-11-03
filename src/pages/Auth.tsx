@@ -3,6 +3,7 @@ import { Input } from '../components'
 import { IUserData } from '../models/user'
 import { AuthService } from '../services/auth.service'
 import { isAxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 const Auth: FC = () => {
 	const [isLogin, setIsLogin] = useState<boolean>(false)
@@ -20,6 +21,7 @@ const Auth: FC = () => {
 		event.preventDefault()
 		try {
 			const user = await AuthService.login(userData)
+			toast('You have successfully logged in!')
 			console.log(user)
 		} catch (error) {
 			if (isAxiosError(error)) {
@@ -32,6 +34,7 @@ const Auth: FC = () => {
 		event.preventDefault()
 		try {
 			const user = await AuthService.register(userData)
+			toast('Account has been created!')
 			console.log(user)
 		} catch (error) {
 			if (isAxiosError(error)) {
@@ -56,7 +59,7 @@ const Auth: FC = () => {
 					placeholder='Enter your email here'
 					label='Email'
 					className='w-full'
-					value={userData.email}
+					value={userData.email || 'test254c@mail.ru'} // temp decision
 					onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUserData({...userData, email: event.target.value})}
 				/> 
 				<Input
@@ -65,7 +68,7 @@ const Auth: FC = () => {
 					placeholder='Enter your password here'
 					label='Password'
 					className='w-full'
-					value={userData.password}
+					value={userData.password || '123456'} // temp decision
 					onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUserData({...userData, password: event.target.value})}
 				/>
 			</form>
