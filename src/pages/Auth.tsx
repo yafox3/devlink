@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import { Input, Spinner } from '../components'
+import { toastByStatus } from '../helpers/toastByStatus'
 import { useAppDispatch, useAppSelector, useAuth } from '../hooks'
 import { Statuses } from '../models/statuses'
 import { IUserData } from '../models/user'
@@ -27,18 +27,14 @@ const Auth: FC = () => {
 		event.preventDefault()
 		const response = await dispatch(authLogin(userData))
 
-		if (response.payload) {
-			return toast('Login succesfuly')
-		}
+		toastByStatus(response.type, { success: 'Login successful!', error: 'Login failed!' })
 	}
 
 	const signUpHandler = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
 		const response = await dispatch(authSignUp(userData))
 
-		if (response.payload) {
-			return toast('Account has been created!')
-		}
+		toastByStatus(response.type, { success: 'Account has been created!', error: 'Something went wrong!' })
 	}
 
 	if (isAuth) {
@@ -79,7 +75,7 @@ const Auth: FC = () => {
 					}
 				/>
 			</form>
-			
+
 			{error && <p className='text-center text-red-600 mb-3'>Error: {error}</p>}
 
 			<a
@@ -88,7 +84,7 @@ const Auth: FC = () => {
 				onClick={toggleLogin}>
 				{isLogin ? 'Don’t have an account?' : 'Already have an account?'}
 			</a>
-
+			
 			<button
 				className='btn px-14 block mx-auto'
 				form='auth'
