@@ -1,10 +1,9 @@
 import { FC, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Input, Spinner } from '../components'
-import { toastByStatus } from '../helpers/toastByStatus'
+import { toastByStatus } from '../helpers'
 import { useAppDispatch, useAppSelector, useAuth } from '../hooks'
-import { Statuses } from '../models/statuses'
-import { IUserData } from '../models/user'
+import { IUserData, Statuses } from '../models'
 import { authLogin, authSignUp } from '../store/slices/authSlice'
 
 const Auth: FC = () => {
@@ -34,7 +33,10 @@ const Auth: FC = () => {
 		event.preventDefault()
 		const response = await dispatch(authSignUp(userData))
 
-		toastByStatus(response.type, { success: 'Account has been created!', error: 'Something went wrong!' })
+		toastByStatus(response.type, {
+			success: 'Account has been created!',
+			error: 'Something went wrong!'
+		})
 	}
 
 	if (isAuth) {
@@ -84,7 +86,7 @@ const Auth: FC = () => {
 				onClick={toggleLogin}>
 				{isLogin ? 'Don’t have an account?' : 'Already have an account?'}
 			</a>
-			
+
 			<button
 				className='btn px-14 block mx-auto'
 				form='auth'
@@ -96,4 +98,3 @@ const Auth: FC = () => {
 }
 
 export { Auth }
-
