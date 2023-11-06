@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { FaRegCopy, FaRegEye, FaRegTrashCan } from 'react-icons/fa6'
+import { FaRegCopy, FaRegEye, FaRegTrashCan, FaRegPenToSquare } from 'react-icons/fa6'
 import { copyToClipboard } from '../helpers'
 import { IDevCard } from '../models'
 
@@ -23,11 +23,12 @@ const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
 				</div>
 
 				<div className='flex items-center gap-4 text-xl'>
-					<FaRegCopy 
+					<FaRegCopy
 						className='text-black cursor-pointer'
 						onClick={() => copyToClipboard(`${window.location.origin}/devcard/${devCard.id}`)}
 					/>
-					<FaRegTrashCan className='text-red-600 cursor-pointer'/>
+					<FaRegPenToSquare className='text-black cursor-pointer' />
+					<FaRegTrashCan className='text-red-600 cursor-pointer' />
 				</div>
 			</div>
 		</div>
@@ -35,4 +36,3 @@ const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
 }
 
 export { DevCardItem }
-
