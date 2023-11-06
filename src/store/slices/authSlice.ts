@@ -25,6 +25,7 @@ interface AuthState {
 	email: string | null
 	token: string | null
 	error: string | null
+	isDataReceived: boolean
 	status: Statuses
 }
 
@@ -32,6 +33,7 @@ const initialState: AuthState = {
 	email: null,
 	token: null,
 	error: null,
+	isDataReceived: false,
 	status: Statuses.INIT
 }
 
@@ -45,54 +47,63 @@ export const authSlice = createSlice({
 			state.email = null
 			state.token = null
 			state.error = null
+			state.isDataReceived = false
 		}),
 			builder.addCase(authLogin.fulfilled, (state: AuthState, action) => {
 				state.status = Statuses.LOADED
 				state.email = action.payload.email
 				state.token = action.payload.token
 				state.error = null
+				state.isDataReceived = true
 			}),
 			builder.addCase(authLogin.rejected, (state: AuthState, action) => {
 				state.status = Statuses.ERROR
 				state.email = null
 				state.token = null
 				state.error = action.error.message || null
+				state.isDataReceived = true
 			}),
 			builder.addCase(authSignUp.pending, (state: AuthState) => {
 				state.status = Statuses.LOADING
 				state.email = null
 				state.token = null
 				state.error = null
+				state.isDataReceived = false
 			}),
 			builder.addCase(authSignUp.fulfilled, (state: AuthState, action) => {
 				state.status = Statuses.LOADED
 				state.email = action.payload.email
 				state.token = action.payload.token
 				state.error = null
+				state.isDataReceived = true
 			}),
 			builder.addCase(authSignUp.rejected, (state: AuthState, action) => {
 				state.status = Statuses.ERROR
 				state.email = null
 				state.token = null
 				state.error = action.error.message || null
+				state.isDataReceived = true
 			}),
 			builder.addCase(authCheck.pending, (state: AuthState) => {
 				state.status = Statuses.LOADING
 				state.email = null
 				state.token = null
 				state.error = null
+				state.isDataReceived = false
 			}),
 			builder.addCase(authCheck.fulfilled, (state: AuthState, action) => {
 				state.status = Statuses.LOADED
 				state.email = action.payload.email
 				state.token = action.payload.token
 				state.error = null
+				state.isDataReceived = true
 			}),
 			builder.addCase(authCheck.rejected, (state: AuthState) => {
 				state.status = Statuses.ERROR
 				state.email = null
 				state.token = null
 				state.error = null
+				state.isDataReceived = true
 			})
 	}
 })

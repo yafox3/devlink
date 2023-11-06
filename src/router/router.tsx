@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Auth, Dashboard, DevCard, Editor, ErrorPage, Home, Layout, Profile } from '../pages'
 import { ProtectedRoutes } from '../components'
+import { Auth, Dashboard, DevCard, Editor, ErrorPage, Home, Layout, Profile } from '../pages'
 
 export const router = createBrowserRouter([
 	{
