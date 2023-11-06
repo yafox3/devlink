@@ -2,13 +2,12 @@ import { FC } from 'react'
 import { FaRegImage } from 'react-icons/fa6'
 
 interface ImageUploadProps {
-	currentImage: File | null
 	previewImage: string
 	setCurrentImage: (file: File) => void
 	setPreviewImage: (url: string) => void
 }
 
-const ImageUpload: FC<ImageUploadProps> = ({currentImage, previewImage, setCurrentImage, setPreviewImage}) => {
+const ImageUpload: FC<ImageUploadProps> = ({ previewImage, setCurrentImage, setPreviewImage}) => {
 	const selectImageHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const selectedFiles = event.target.files as FileList
 		setCurrentImage(selectedFiles?.[0])
@@ -31,4 +30,5 @@ const ImageUpload: FC<ImageUploadProps> = ({currentImage, previewImage, setCurre
 	)
 }
 
-export default ImageUpload
+export { ImageUpload }
+
