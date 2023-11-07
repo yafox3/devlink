@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
 				)
 			},
 			{
-				path: 'editor',
+				path: 'editor/:id',
 				element: (
 					<ProtectedRoutes redirectPath='/auth'>
 						<Editor />
