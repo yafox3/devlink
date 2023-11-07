@@ -5,7 +5,7 @@ const Spinner: FC<HTMLAttributes<HTMLDivElement>> = ({className = ''}) => {
 		<div role='status'>
 			<svg
 				aria-hidden='true'
-				className={'inline w-5 h-5 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300 '.concat(className)}
+				className={'inline w-5 h-5 mr-2 text-gray-200 animate-spin fill-gray-600 '.concat(className)}
 				viewBox='0 0 100 101'
 				fill='none'
 				xmlns='http://www.w3.org/2000/svg'>
