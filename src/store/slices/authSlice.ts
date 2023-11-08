@@ -47,42 +47,36 @@ export const authSlice = createSlice({
 			state.email = null
 			state.token = null
 			state.error = null
-			state.isDataReceived = false
 		}),
 			builder.addCase(authLogin.fulfilled, (state: AuthState, action) => {
 				state.status = Statuses.LOADED
 				state.email = action.payload.email
 				state.token = action.payload.token
 				state.error = null
-				state.isDataReceived = true
 			}),
 			builder.addCase(authLogin.rejected, (state: AuthState, action) => {
 				state.status = Statuses.ERROR
 				state.email = null
 				state.token = null
 				state.error = action.error.message || null
-				state.isDataReceived = true
 			}),
 			builder.addCase(authSignUp.pending, (state: AuthState) => {
 				state.status = Statuses.LOADING
 				state.email = null
 				state.token = null
 				state.error = null
-				state.isDataReceived = false
 			}),
 			builder.addCase(authSignUp.fulfilled, (state: AuthState, action) => {
 				state.status = Statuses.LOADED
 				state.email = action.payload.email
 				state.token = action.payload.token
 				state.error = null
-				state.isDataReceived = true
 			}),
 			builder.addCase(authSignUp.rejected, (state: AuthState, action) => {
 				state.status = Statuses.ERROR
 				state.email = null
 				state.token = null
 				state.error = action.error.message || null
-				state.isDataReceived = true
 			}),
 			builder.addCase(authCheck.pending, (state: AuthState) => {
 				state.status = Statuses.LOADING
