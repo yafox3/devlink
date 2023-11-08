@@ -6,11 +6,12 @@ import Select, {
 	StylesConfig,
 	components
 } from 'react-select'
+import { Platforms } from '../../models'
 
 export interface Option {
 	label: string
 	icon: React.ReactNode
-	value: string
+	value: Platforms
 }
 
 interface CustomSelectProps {
