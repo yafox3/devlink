@@ -1,5 +1,11 @@
 import React from 'react'
-import Select, { GroupBase, OptionProps, SingleValueProps, StylesConfig, components } from 'react-select'
+import Select, {
+	GroupBase,
+	OptionProps,
+	SingleValueProps,
+	StylesConfig,
+	components
+} from 'react-select'
 
 export interface Option {
 	label: string
@@ -44,4 +50,3 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ options, value, onChange, s
 }
 
 export { CustomSelect }
-
