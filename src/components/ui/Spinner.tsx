@@ -1,11 +1,11 @@
 import { FC, HTMLAttributes } from 'react'
 
-const Spinner: FC<HTMLAttributes<HTMLDivElement>> = ({className = ''}) => {
+const Spinner: FC<HTMLAttributes<HTMLDivElement>> = ({className = 'w-5 h-5 text-gray-200 dark:text-gray-600 fill-gray-600 dark:fill-gray-300'}) => {
 	return (
 		<div role='status'>
 			<svg
 				aria-hidden='true'
-				className={'inline w-5 h-5 mr-2 text-gray-200 animate-spin fill-gray-600 '.concat(className)}
+				className={'inline mr-2 animate-spin '.concat(className)}
 				viewBox='0 0 100 101'
 				fill='none'
 				xmlns='http://www.w3.org/2000/svg'>
