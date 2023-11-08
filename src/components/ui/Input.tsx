@@ -7,7 +7,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input: FC<InputProps> = ({ className = '', label, ...props }) => {
 	return (
 		<>
-			<label className='text-base w-full'>
+			<label className='block text-base w-full'>
 				{label}
 				<input className={'input'.concat(' ', className)} {...props} />
 			</label>
@@ -16,3 +16,4 @@ const Input: FC<InputProps> = ({ className = '', label, ...props }) => {
 }
 
 export { Input }
+
