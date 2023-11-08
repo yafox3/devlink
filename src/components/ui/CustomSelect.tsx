@@ -18,9 +18,10 @@ interface CustomSelectProps {
 	value: Option | null
 	onChange: (selectedOption: Option | null) => void
 	styles?: StylesConfig<Option, boolean, GroupBase<Option>> | undefined
+	label?: string
 }
 
-const CustomSelect: React.FC<CustomSelectProps> = ({ options, value, onChange, styles }) => {
+const CustomSelect: React.FC<CustomSelectProps> = ({ options, value, onChange, styles, label }) => {
 	const handleChange = (selectedOption: Option | null) => {
 		onChange(selectedOption)
 	}
@@ -38,15 +39,19 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ options, value, onChange, s
 	)
 
 	return (
-		<Select
-			options={options}
-			isSearchable={false}
-			value={value}
-			onChange={handleChange}
-			styles={styles}
-			components={{ Option: OptionComponent, SingleValue }}
-		/>
+		<label>
+			<span className='block text-base mb-2'>{label}</span>
+			<Select
+				options={options}
+				isSearchable={false}
+				value={value}
+				onChange={handleChange}
+				styles={styles}
+				components={{ Option: OptionComponent, SingleValue }}
+			/>
+		</label>
 	)
 }
 
 export { CustomSelect }
+
