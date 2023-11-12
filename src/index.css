@@ -10,10 +10,13 @@
 
 @layer components {
 	.container {
-		@apply max-w-[1030px]
+		@apply max-w-[1200px]
 	}
 	.btn {
-		@apply px-10 py-3 text-base bg-blue-700 text-white rounded-xl hover:bg-blue-900 transition-colors
+		@apply px-10 py-3 text-base bg-blue-700 text-white rounded-xl hover:bg-blue-900 transition-colors font-bold
+	}
+	.btn_outline {
+		@apply bg-transparent border border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-bold
 	}
 	.title {
 		@apply text-blue-900 text-center text-4xl
