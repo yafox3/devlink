@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import { FaRegCopy, FaRegEye, FaRegTrashCan, FaRegPenToSquare } from 'react-icons/fa6'
+import { FaRegCopy, FaRegEye, FaRegPenToSquare, FaRegTrashCan } from 'react-icons/fa6'
+import { useNavigate } from 'react-router-dom'
 import { copyToClipboard } from '../helpers'
 import { IDevCard } from '../models'
 
@@ -8,6 +9,12 @@ interface DevCardItemProps {
 }
 
 const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
+	const navigate = useNavigate()
+
+	const toEditor = () => {
+		navigate(`/editor/${devCard.id}`)
+	}
+
 	return (
 		<div className='w-full flex justify-between py-3.5 px-8 rounded-2xl border border-black/15 shadow-md shadow-black/25 max-w-3xl mx-auto'>
 			<div className='flex gap-4 items-center'>
@@ -27,7 +34,7 @@ const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
 						className='text-black cursor-pointer'
 						onClick={() => copyToClipboard(`${window.location.origin}/devcard/${devCard.id}`)}
 					/>
-					<FaRegPenToSquare className='text-black cursor-pointer' />
+					<FaRegPenToSquare className='text-black cursor-pointer' onClick={toEditor} />
 					<FaRegTrashCan className='text-red-600 cursor-pointer' />
 				</div>
 			</div>

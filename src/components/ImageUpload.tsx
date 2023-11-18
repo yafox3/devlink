@@ -1,13 +1,13 @@
-import { FC } from 'react'
+import { FC, HTMLAttributes } from 'react'
 import { FaRegImage } from 'react-icons/fa6'
 
-interface ImageUploadProps {
+interface ImageUploadProps extends HTMLAttributes<HTMLLabelElement> {
 	previewImage: string
 	setCurrentImage: (file: File) => void
 	setPreviewImage: (url: string) => void
 }
 
-const ImageUpload: FC<ImageUploadProps> = ({ previewImage, setCurrentImage, setPreviewImage}) => {
+const ImageUpload: FC<ImageUploadProps> = ({ previewImage, setCurrentImage, setPreviewImage, className = ''}) => {
 	const selectImageHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const selectedFiles = event.target.files as FileList
 		setCurrentImage(selectedFiles?.[0])
@@ -15,7 +15,7 @@ const ImageUpload: FC<ImageUploadProps> = ({ previewImage, setCurrentImage, setP
 	}
 	
 	return (
-		<label className='relative group block cursor-pointer mb-4 h-[200px] w-[200px] mx-auto'>
+		<label className={'relative group block cursor-pointer mb-4 h-[200px] w-[200px] mx-auto'.concat(' ', className)}>
 			<img
 				className='mx-auto block h-[200px] w-[200px] rounded-full object-cover'
 				src={previewImage}
