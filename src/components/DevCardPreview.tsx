@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
-import { ILink, Platforms } from '../models'
 import { FaArrowRight, FaGithub, FaLinkedin, FaYoutube } from 'react-icons/fa6'
+import { ILink, Platforms } from '../models'
 
 interface DevCardPreviewProps {
 	email: string
@@ -57,7 +57,7 @@ const DevCardPreview: FC<DevCardPreviewProps> = ({email, firstName, img, lastNam
 					: <div className='mb-4 w-28 h-28 mx-auto rounded-full bg-black/10 animate-pulse'></div>
 				}
 
-				{firstName && lastName 
+				{firstName || lastName 
 					? <p className='text-center font-bold text-lg mb-2'>{firstName} {lastName}</p>
 					: <div className='h-3 bg-black/10 rounded-full w-48 mb-4 mx-auto animate-pulse'></div>
 				}
