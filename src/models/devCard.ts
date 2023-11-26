@@ -1,7 +1,7 @@
 import { ILink } from './link'
 
 export interface IDevCard {
-	id: number
+	url: string
 	links: ILink[]
 	img: string
 	email: string

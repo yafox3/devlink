@@ -12,7 +12,7 @@ const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
 	const navigate = useNavigate()
 
 	const toEditor = () => {
-		navigate(`/editor/${devCard.id}`)
+		navigate(`/editor/${devCard.url}`)
 	}
 
 	return (
@@ -32,7 +32,7 @@ const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
 				<div className='flex items-center gap-4 text-xl'>
 					<FaRegCopy
 						className='text-black cursor-pointer'
-						onClick={() => copyToClipboard(`${window.location.origin}/devcard/${devCard.id}`)}
+						onClick={() => copyToClipboard(`${window.location.origin}/devcard/${devCard.url}`)}
 					/>
 					<FaRegPenToSquare className='text-black cursor-pointer' onClick={toEditor} />
 					<FaRegTrashCan className='text-red-600 cursor-pointer' />

@@ -10,7 +10,7 @@ const DevCardList: FC<DevCardListProps> = ({ devCards }) => {
 	return (
 		<div className='flex flex-col gap-4 mb-10'>
 			{devCards.map(card => (
-				<DevCardItem key={card.id} devCard={card} />
+				<DevCardItem key={card.url} devCard={card} />
 			))}
 		</div>
 	)
