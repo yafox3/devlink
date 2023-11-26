@@ -46,7 +46,8 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ options, value, onChange, s
 				options={options}
 				isSearchable={false}
 				value={value}
-				onChange={handleChange}
+				// @ts-ignore
+				onChange={handleChange} 
 				styles={styles}
 				components={{ Option: OptionComponent, SingleValue }}
 			/>
