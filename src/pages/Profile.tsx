@@ -1,16 +1,50 @@
-import { FC, useState } from 'react'
-import { ImageUpload, Input } from '../components'
+import { ChangeEvent, FC, useEffect, useState } from 'react'
+import { ImageUpload, Input, Spinner } from '../components'
+import { toastByStatus } from '../helpers'
+import { useAppDispatch, useAppSelector } from '../hooks'
+import { Statuses } from '../models'
+import { updateProfile } from '../store/slices/userSlice'
 
 const Profile: FC = () => {
+	const { user: {img, firstName, lastName}, status } = useAppSelector(state => state.user)
+	const dispatch = useAppDispatch()
+	const isLoading = status === Statuses.LOADING
 	const [currentImage, setCurrentImage] = useState<File | null>(null)
 	const [previewImage, setPreviewImage] = useState<string>('')
+	const [profileData, setProfileData] = useState({
+		firstName: '',
+		lastName: ''
+	})
+
+	useEffect(() => {
+		setPreviewImage(img)
+		setProfileData({firstName: firstName ?? '', lastName: lastName ?? ''})
+	}, [img, firstName, lastName])
+	
+	const handleProfileUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+
+		const formData = new FormData()
+		formData.append('file', currentImage as File)
+		formData.append('firstName', profileData.firstName)
+		formData.append('lastName', profileData.lastName)
+
+		const response = await dispatch(updateProfile(formData))
+
+		toastByStatus(response.type, {
+			success: 'Profile updated successfully!',
+			error: 'Something went wrong!'
+		})
+	}
 
 	return (
 		<div className='py-10 max-w-[400px] flex flex-col justify-center items-center mx-auto'>
 			<h1 className='title mb-8'>Profile</h1>
 
-			<form action='submit'>
+			<form action='submit' onSubmit={handleProfileUpdate}>
 				<ImageUpload
+					className='mx-auto'
+					isLoading={isLoading}
 					previewImage={previewImage}
 					setCurrentImage={setCurrentImage}
 					setPreviewImage={setPreviewImage}
@@ -18,10 +52,7 @@ const Profile: FC = () => {
 
 				<div className='mx-auto text-center mb-10'>
 					<h5 className='mb-2'>Profile picture</h5>
-					<p className='text-black/60'>
-						Image must be below 1024x1024px. <br />
-						Use PNG, JPG format
-					</p>
+					<p className='text-black/60'>Use PNG, JPG format</p>
 				</div>
 
 				<div className='flex flex-col gap-5 w-full mb-16'>
@@ -29,11 +60,25 @@ const Profile: FC = () => {
 						className='min-w-[400px]'
 						placeholder='Enter your first name here'
 						label='First Name'
+						isLoading={isLoading}
+						value={profileData.firstName}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							setProfileData({ ...profileData, firstName: e.target.value })
+						}
 					/>
-					<Input className='w-full' placeholder='Enter your last name here' label='Last Name' />
+					<Input
+						className='min-w-[400px]'
+						placeholder='Enter your last name here'
+						label='Last Name'
+						isLoading={isLoading}
+						value={profileData.lastName}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							setProfileData({ ...profileData, lastName: e.target.value })
+						}
+					/>
 				</div>
 
-				<button className='btn block mx-auto'>Save changes</button>
+				<button disabled={isLoading} className='btn block mx-auto'>{isLoading ? <Spinner /> : 'Save changes'}</button>
 			</form>
 		</div>
 	)
