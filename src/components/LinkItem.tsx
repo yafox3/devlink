@@ -64,7 +64,7 @@ const LinkItem: FC<LinkItemProps> = ({ link, removeLink, updateLink }) => {
 	}
 
 	const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		updateLink({ ...link, link: e.target.value })
+		updateLink({ ...link, url: e.target.value })
 	}
 
 	return (
@@ -92,7 +92,7 @@ const LinkItem: FC<LinkItemProps> = ({ link, removeLink, updateLink }) => {
 						label='Link'
 						placeholder='Enter your link here'
 						className='w-full mb-8 pl-10'
-						value={link.link}
+						value={link.url}
 						onChange={handleLinkChange}
 					/>
 				</div>
