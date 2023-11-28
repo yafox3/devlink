@@ -26,7 +26,7 @@ const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
 			<div className='flex gap-4 items-center '>
 				<div className='flex items-center gap-1.5 text-black/50 text-sm'>
 					<FaRegEye />
-					<p>{devCard.viewsCount}</p>
+					<p>{devCard.views}</p>
 				</div>
 
 				<div className='flex items-center gap-4 text-xl'>
