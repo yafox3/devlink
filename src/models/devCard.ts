@@ -7,5 +7,6 @@ export interface IDevCard {
 	email: string
 	firstName: string
 	lastName: string
+	title: string
 	views: number
 }

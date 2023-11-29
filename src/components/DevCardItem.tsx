@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { FaRegCopy, FaRegEye, FaRegPenToSquare, FaRegTrashCan } from 'react-icons/fa6'
 import { useNavigate } from 'react-router-dom'
-import { copyToClipboard } from '../helpers'
+import { base64ToImg, copyToClipboard } from '../helpers'
 import { IDevCard } from '../models'
 
 interface DevCardItemProps {
@@ -18,9 +18,9 @@ const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
 	return (
 		<div className='w-full flex justify-between py-3.5 px-8 rounded-2xl border border-black/15 shadow-md shadow-black/25 max-w-3xl mx-auto'>
 			<div className='flex gap-4 items-center'>
-				<img src={devCard.img} alt={`${devCard.firstName} avatar`} className='rounded-full w-14' />
+				<img src={base64ToImg(devCard.img)} alt={`${devCard.firstName} avatar`} className='rounded-full w-14 h-14 object-cover' />
 				<p className='text-lg'>
-					{devCard.firstName} {devCard.lastName}
+					{devCard.title}
 				</p>
 			</div>
 			<div className='flex gap-4 items-center '>
@@ -43,3 +43,4 @@ const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
 }
 
 export { DevCardItem }
+
