@@ -53,7 +53,7 @@ const DevCardPreview: FC<DevCardPreviewProps> = ({email, firstName, img, lastNam
 
 			<div className='mt-10'>
 				{img 
-					? <img className='mb-4 w-28 h-28 mx-auto rounded-full' src={img} alt='devlink avatar' />
+					? <img className='mb-4 w-28 h-28 object-cover mx-auto rounded-full' src={img} alt='devlink avatar' />
 					: <div className='mb-4 w-28 h-28 mx-auto rounded-full bg-black/10 animate-pulse'></div>
 				}
 
