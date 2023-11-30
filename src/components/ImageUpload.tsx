@@ -25,7 +25,7 @@ const ImageUpload: FC<ImageUploadProps> = ({ previewImage, setCurrentImage, setP
 				<FaRegImage className='text-4xl text-white mb-5' />
 				<p className='text-white'>Upload Image</p>
 			</div>
-			<input className='hidden' accept='image/jpeg, image/png' type='file' onChange={selectImageHandler} />
+			<input disabled={isLoading} className='hidden' accept='image/jpeg, image/png' type='file' onChange={selectImageHandler} />
 		</label>
 	)
 }
