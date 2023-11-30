@@ -58,7 +58,7 @@ const DevCardPreview: FC<DevCardPreviewProps> = ({email, firstName, img, lastNam
 				}
 
 				{firstName || lastName 
-					? <p className='text-center font-bold text-lg mb-2'>{firstName} {lastName}</p>
+					? <p className='text-center font-bold text-lg mb-2'><span>{firstName}</span> <span>{lastName}</span></p>
 					: <div className='h-3 bg-black/10 rounded-full w-48 mb-4 mx-auto animate-pulse'></div>
 				}
 
