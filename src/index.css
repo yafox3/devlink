@@ -16,7 +16,7 @@
 		@apply px-10 py-3 text-base bg-blue-700 text-white rounded-xl hover:bg-blue-900 transition-colors font-bold disabled:bg-blue-900
 	}
 	.btn_outline {
-		@apply bg-transparent border border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-bold
+		@apply bg-transparent border border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-bold disabled:text-white
 	}
 	.title {
 		@apply text-blue-900 text-center text-4xl
