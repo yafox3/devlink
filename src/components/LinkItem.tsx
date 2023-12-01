@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { FaGithub, FaLink, FaLinkedin, FaRegTrashCan, FaYoutube } from 'react-icons/fa6'
 import { GroupBase, StylesConfig } from 'react-select'
-import { Input } from '.'
+import { Input, Spinner } from '.'
 import { ILink, Platforms } from '../models'
 import { CustomSelect, Option } from './ui/CustomSelect'
 
@@ -40,10 +40,10 @@ const options: Option[] = [
 		icon: <FaYoutube className='text-red-700 text-xl' />,
 		value: Platforms.YOUTUBE
 	},
-	{ 
-		label: 'GitHub', 
-		icon: <FaGithub className='text-xl' />, 
-		value: Platforms.GITHUB 
+	{
+		label: 'GitHub',
+		icon: <FaGithub className='text-xl' />,
+		value: Platforms.GITHUB
 	},
 	{
 		label: 'LinkedIn',
@@ -56,9 +56,10 @@ interface LinkItemProps {
 	link: ILink
 	updateLink: (link: ILink) => void
 	removeLink: () => void
+	isLoading?: boolean
 }
 
-const LinkItem: FC<LinkItemProps> = ({ link, removeLink, updateLink }) => {
+const LinkItem: FC<LinkItemProps> = ({ link, removeLink, updateLink, isLoading }) => {
 	const handlePlatformChange = (platform: Option | null) => {
 		updateLink({ ...link, platform: platform!.value })
 	}
@@ -68,7 +69,7 @@ const LinkItem: FC<LinkItemProps> = ({ link, removeLink, updateLink }) => {
 	}
 
 	return (
-		<div className='pt-3.5 px-4 rounded-xl bg-gray-100'>
+		<div className='relative pt-3.5 px-4 rounded-xl bg-gray-100'>
 			<div className='flex items-center justify-between mb-5'>
 				<div className='flex items-center gap-1.5 text-gray-600'>
 					<FaLink />
@@ -97,9 +98,14 @@ const LinkItem: FC<LinkItemProps> = ({ link, removeLink, updateLink }) => {
 					/>
 				</div>
 			</div>
+
+			{isLoading && (
+				<div className='absolute top-0 left-0 bottom-0 right-0 z-10 animate-pulse bg-black/10 rounded-xl flex items-center justify-center'>
+					<Spinner />
+				</div>
+			)}
 		</div>
 	)
 }
 
 export { LinkItem }
-
