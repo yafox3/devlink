@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
-import example from '../assets/images/home/example.jpg'
+import example from '../assets/images/home/example.png'
 import { useAuth } from '../hooks'
 
 const Home: FC = () => {
@@ -22,3 +22,4 @@ const Home: FC = () => {
 }
 
 export { Home }
+
