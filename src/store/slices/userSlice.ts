@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { base64ToImg, getTokenFromLocalStorage } from '../../helpers'
 import { axios } from '../../http'
-import { IUser, Statuses } from '../../models'
+import { IDevCard, IUser, Statuses } from '../../models'
 
 export const getUser = createAsyncThunk('user/me', async () => {
 	const { data } = await axios.get<IUser>('auth/me')
+	return data
+})
+
+export const getUserCards = createAsyncThunk('user/card', async () => {
+	const { data } = await axios.get<IDevCard[]>('/card')
 	return data
 })
 
@@ -90,6 +95,21 @@ export const userSlice = createSlice({
 			state.user.firstName = ''
 			state.user.lastName = ''
 			state.user.img = ''
+			state.user.devCards = []
+			state.error = action.error.message || null
+		})
+		builder.addCase(getUserCards.pending, (state: UserState) => {
+			state.status = Statuses.LOADING
+			state.user.devCards = []
+			state.error = null
+		}),
+		builder.addCase(getUserCards.fulfilled, (state: UserState, action) => {
+			state.status = Statuses.LOADED
+			state.user.devCards = action.payload
+			state.error = null
+		}),
+		builder.addCase(getUserCards.rejected, (state: UserState, action) => {
+			state.status = Statuses.ERROR
 			state.user.devCards = []
 			state.error = action.error.message || null
 		})
