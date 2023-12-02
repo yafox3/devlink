@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
 		],
 	},
 	{
-		path: 'devcard/:id',
+		path: '/:id',
 		element: <DevCard />
 	}
 ])
