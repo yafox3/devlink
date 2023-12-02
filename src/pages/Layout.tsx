@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom'
 import { Header, Loader } from '../components/'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { authCheck } from '../store/slices/authSlice'
-import { getUser } from '../store/slices/userSlice'
 
 const Layout: FC = () => {
 	const dispatch = useAppDispatch()
@@ -11,7 +10,6 @@ const Layout: FC = () => {
 
 	useEffect(() => {
 		dispatch(authCheck())
-		dispatch(getUser())
 	}, [dispatch])
 
 	if (!isDataReceived) {

@@ -3,7 +3,7 @@ import { ImageUpload, Input, Spinner } from '../components'
 import { toastByStatus } from '../helpers'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { Statuses } from '../models'
-import { updateProfile } from '../store/slices/userSlice'
+import { getUser, updateProfile } from '../store/slices/userSlice'
 
 const Profile: FC = () => {
 	const { user: {img, firstName, lastName}, status } = useAppSelector(state => state.user)
@@ -15,6 +15,10 @@ const Profile: FC = () => {
 		firstName: '',
 		lastName: ''
 	})
+
+	useEffect(() => {
+		!!img || dispatch(getUser())
+	}, [])
 
 	useEffect(() => {
 		setPreviewImage(img)
