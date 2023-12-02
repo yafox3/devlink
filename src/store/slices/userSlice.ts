@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { base64ToImg, getTokenFromLocalStorage } from '../../helpers'
+import { base64ToImg } from '../../helpers'
 import { axios } from '../../http'
 import { IDevCard, IUser, Statuses } from '../../models'
 
 export const getUser = createAsyncThunk('user/me', async () => {
-	const { data } = await axios.get<IUser>('auth/me')
+	const { data } = await axios.get<IUser>('user/me')
 	return data
 })
 
@@ -14,10 +14,9 @@ export const getUserCards = createAsyncThunk('user/card', async () => {
 })
 
 export const updateProfile = createAsyncThunk('user/update', async (updatedProfile: FormData) => {
-	const { data } = await axios.post('user/update', updatedProfile, {
+	const { data } = await axios.put('user/update', updatedProfile, {
 		headers: {
 			'Content-Type': 'multipart/form-data',
-			Authorization: `Bearer ${getTokenFromLocalStorage()}`
 		}
 	})
 	return data
