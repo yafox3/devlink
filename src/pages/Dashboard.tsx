@@ -27,7 +27,7 @@ const Dashboard: FC = () => {
 
 	return (
 		<div className='py-10'>
-			<h1 className='title mb-16'>Links</h1>
+			<h1 className='title mb-16'>Dashboard</h1>
 			{isLoading ? (
 				<div className='w-10 h-10 mx-auto mb-16'>
 					<Spinner className='w-10 h-10 dark:fill-blue-600 dark:text-black/5 fill-blue-600 text-black/5' />
@@ -35,11 +35,11 @@ const Dashboard: FC = () => {
 			) : devCards.length ? (
 				<DevCardList devCards={devCards} />
 			) : (
-				<p className='text-center text-2xl mb-16'>Nothing found</p>
+				<p className='text-center text-xl text-gray-400 mb-12'>Create your first devcard</p>
 			)}
 
 			<button disabled={isLoading} className='btn block mx-auto' onClick={createLinkHandler}>
-				Create link
+				{isLoading ? <Spinner /> : 'Create card'}
 			</button>
 		</div>
 	)

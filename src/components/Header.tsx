@@ -25,7 +25,7 @@ const Header: FC = () => {
 							<NavLink
 								to='/dashboard'
 								className='text-lg text-blue-700 font-semibold hover:text-blue-800 transition-colors'>
-								Links
+								Dashboard
 							</NavLink>
 							<NavLink
 								to='/profile'
