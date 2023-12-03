@@ -1,5 +1,6 @@
 export type { IDevCard } from './devCard'
 export type { ILink } from './link'
+export type { IAuthResponse } from './auth'
+export type { IUser, IUserData } from './user'
 export { Platforms } from './platforms'
 export { Statuses } from './statuses'
-export type { IUser, IUserData } from './user'

@@ -1,22 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { setTokenToLocalStorage } from '../../helpers'
 import { axios } from '../../http'
-import { IUser, IUserData, Statuses } from '../../models'
+import { IAuthResponse, IUserData, Statuses } from '../../models'
 
 export const authLogin = createAsyncThunk('auth/login', async (user: IUserData) => {
-	const { data } = await axios.post<IUser>('auth/authenticate', user)
+	const { data } = await axios.post<IAuthResponse>('auth/authenticate', user)
 	setTokenToLocalStorage(data.token)
 	return data
 })
 
 export const authSignUp = createAsyncThunk('auth/signUp', async (user: IUserData) => {
-	const { data } = await axios.post<IUser>('auth/register', user)
+	const { data } = await axios.post<IAuthResponse>('auth/register', user)
 	setTokenToLocalStorage(data.token)
 	return data
 })
 
 export const authCheck = createAsyncThunk('auth/check', async () => {
-	const { data } = await axios.get<IUser>('auth/me')
+	const { data } = await axios.get<IAuthResponse>('auth/me')
 	setTokenToLocalStorage(data.token)
 	return data
 })
