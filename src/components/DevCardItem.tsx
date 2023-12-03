@@ -26,7 +26,7 @@ const DevCardItem: FC<DevCardItemProps> = ({ devCard }) => {
 		if (window.confirm('Are you sure you want to delete this card?')) {
 			try {
 				setIsLoading(true)
-				await axios.delete(`/card/${devCard.url}`)
+				await axios.delete(`/card/delete/${devCard.url}`)
 				toast.success('Card deleted successfully!')
 				dispatch(getUserCards())
 			} catch {
