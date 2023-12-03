@@ -31,9 +31,9 @@ const DevCardPreview: FC<DevCardPreviewProps> = ({email, firstName, img, lastNam
 					: <div className='h-2.5 bg-black/10 rounded-full w-24 mb-14 mx-auto animate-pulse'></div>
 				}
 
-				<div className='flex flex-col items-center gap-6'>
+				<div className='flex flex-col items-center gap-6 px-8'>
 					{links.map(link => (
-						<div key={link.id}>
+						<div key={link.id} className='w-full'>
 							{platformToTSX(link.platform)}
 						</div>
 					))}

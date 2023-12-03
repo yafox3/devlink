@@ -6,6 +6,9 @@
 	body {
 		@apply text-sm
 	}
+	* {
+		@apply font-poppins
+	}
 }
 
 @layer components {
