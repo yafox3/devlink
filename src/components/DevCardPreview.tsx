@@ -1,6 +1,6 @@
-import { FC, ReactNode } from 'react'
-import { FaArrowRight, FaGithub, FaLinkedin, FaYoutube } from 'react-icons/fa6'
-import { ILink, Platforms } from '../models'
+import { FC } from 'react'
+import { platformToTSX } from '../helpers'
+import { ILink } from '../models'
 
 interface DevCardPreviewProps {
 	email: string
@@ -11,42 +11,6 @@ interface DevCardPreviewProps {
 }
 
 const DevCardPreview: FC<DevCardPreviewProps> = ({email, firstName, img, lastName, links}) => {
-	const platformToJSX = (platform: Platforms): ReactNode => {
-		switch (platform) {
-			case Platforms.GITHUB:
-				return (
-					<div className='flex items-center justify-between h-14 w-64 bg-black/90 p-5 text-white rounded-xl'>
-						<div className='flex items-center gap-4'>
-							<FaGithub className='text-lg'/>
-							{Platforms.GITHUB}
-						</div>
-						<FaArrowRight className='text-lg'/>
-					</div>
-				)
-			case Platforms.YOUTUBE:
-				return (
-					<div className='flex items-center justify-between h-14 w-64 bg-red-700 p-5 text-white rounded-xl'>
-						<div className='flex items-center gap-4'>
-							<FaYoutube className='text-lg'/>
-							{Platforms.YOUTUBE}
-						</div>
-						<FaArrowRight className='text-lg'/>
-					</div>
-				)
-			case Platforms.LINKEDIN:
-				return (
-					<div className='flex items-center justify-between h-14 w-64 bg-blue-600 p-5 text-white rounded-xl'>
-						<div className='flex items-center gap-4'>
-							<FaLinkedin className='text-lg'/>
-							{Platforms.LINKEDIN}
-						</div>
-						<FaArrowRight className='text-lg'/>
-					</div>
-				)
-			default: return <div className='h-14 w-64 bg-black/10 rounded-2xl animate-pulse'></div>
-		}
-	}
-
 	return (
 		<div className='relative select-none z-10 w-[344px] h-[683px] border-[16px] border-gray-900 rounded-[55px] shadow-xl overflow-hidden'>
 			<div className='absolute -top-2 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-900 rounded-2xl'></div>
@@ -70,7 +34,7 @@ const DevCardPreview: FC<DevCardPreviewProps> = ({email, firstName, img, lastNam
 				<div className='flex flex-col items-center gap-6'>
 					{links.map(link => (
 						<div key={link.id}>
-							{platformToJSX(link.platform)}
+							{platformToTSX(link.platform)}
 						</div>
 					))}
 				</div>
