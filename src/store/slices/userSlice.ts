@@ -34,7 +34,6 @@ const initialState: UserState = {
 		firstName: '',
 		lastName: '',
 		img: '',
-		token: '',
 		devCards: []
 	},
 	error: null,
@@ -70,7 +69,6 @@ export const userSlice = createSlice({
 		builder.addCase(getUser.pending, (state: UserState) => {
 			state.status = Statuses.LOADING
 			state.user.email = ''
-			state.user.token = ''
 			state.user.firstName = ''
 			state.user.lastName = ''
 			state.user.img = ''
@@ -80,7 +78,6 @@ export const userSlice = createSlice({
 		builder.addCase(getUser.fulfilled, (state: UserState, action) => {
 			state.status = Statuses.LOADED
 			state.user.email = action.payload.email
-			state.user.token = action.payload.token
 			state.user.firstName = action.payload.firstName
 			state.user.lastName = action.payload.lastName
 			state.user.img = base64ToImg(action.payload.img)
@@ -90,7 +87,6 @@ export const userSlice = createSlice({
 		builder.addCase(getUser.rejected, (state: UserState, action) => {
 			state.status = Statuses.ERROR
 			state.user.email = ''
-			state.user.token = ''
 			state.user.firstName = ''
 			state.user.lastName = ''
 			state.user.img = ''

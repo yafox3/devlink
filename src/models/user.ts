@@ -11,5 +11,4 @@ export interface IUser {
 	lastName?: string
 	img: string
 	devCards: IDevCard[]
-	token: string
 }
