@@ -13,7 +13,7 @@ import { getUser, getUserCards } from '../store/slices/userSlice'
 const Editor: FC = () => {
 	const { id } = useParams()
 	const navigate = useNavigate()
-	const {user, status} = useAppSelector(state => state.user)
+	const { user, status } = useAppSelector(state => state.user)
 	const dispatch = useAppDispatch()
 	const [devCard, setDevCard] = useState<IDevCard>({
 		email: '',
@@ -35,12 +35,13 @@ const Editor: FC = () => {
 	const [currentImage, setCurrentImage] = useState<File | null>(null)
 	const [previewImage, setPreviewImage] = useState<string>('')
 	const [newLinkId, setNewLinkId] = useState<number>(3)
+	const [isPreviewActive, setIsPreviewActive] = useState<boolean>(false)
 
 	useEffect(() => {
 		if (id === 'new' && !user.email) {
 			dispatch(getUser())
 		}
-  }, [])
+	}, [])
 
 	useEffect(() => {
 		setIsLoading(userIsLoading)
@@ -186,8 +187,8 @@ const Editor: FC = () => {
 
 	return (
 		<div className='py-10'>
-			<div className='relative flex gap-10 mb-10 max-h-[75vh] overflow-y-scroll border-b border-b-black/10 pr-4'>
-				<div className='sticky flex-[40%] top-0 left-0 w-[420px] h-[683px]'>
+			<div className='relative flex gap-10 mb-6 max-h-[75vh] overflow-y-scroll border-b border-b-black/10 pr-4'>
+				<div className='sticky hidden md:block flex-[40%] top-0 left-0 w-[420px] h-[683px]'>
 					<DevCardPreview
 						firstName={devCard.firstName}
 						lastName={devCard.lastName}
@@ -196,6 +197,21 @@ const Editor: FC = () => {
 						links={devCard.links}
 					/>
 				</div>
+
+				{isPreviewActive && (
+					<div
+						className='fixed z-10 top-0 left-0 bottom-0 right-0 flex flex-col justify-center items-center py-5 bg-white'
+						onClick={() => setIsPreviewActive(false)}>
+						<DevCardPreview
+							firstName={devCard.firstName}
+							lastName={devCard.lastName}
+							img={devCard.img}
+							email={devCard.email}
+							links={devCard.links}
+						/>
+						<span className='text-gray-400'>click anywhere to close</span>
+					</div>
+				)}
 
 				<div className='flex-[60%] flex flex-col gap-6'>
 					<div className='mb-2'>
@@ -219,7 +235,7 @@ const Editor: FC = () => {
 							<Input
 								disabled={isLoading}
 								isLoading={isLoading}
-								className='min-w-[400px]'
+								className='w-full'
 								placeholder='Enter your first name here'
 								label='First Name*'
 								aria-label='firstName'
@@ -231,7 +247,7 @@ const Editor: FC = () => {
 							<Input
 								disabled={isLoading}
 								isLoading={isLoading}
-								className='min-w-[400px]'
+								className='w-full'
 								placeholder='Enter your last name here'
 								label='Last Name'
 								aria-label='lastName'
@@ -243,7 +259,7 @@ const Editor: FC = () => {
 							<Input
 								disabled={isLoading}
 								isLoading={isLoading}
-								className='min-w-[400px]'
+								className='w-full'
 								placeholder='Enter your email here'
 								label='Email*'
 								aria-label='email'
@@ -264,7 +280,7 @@ const Editor: FC = () => {
 							isLoading={isLoading}
 							label='Card title*'
 							value={devCard.title}
-							className='min-w-[400px]'
+							className='w-full'
 							placeholder='Enter title here'
 							onChange={inputChangeHandler}
 							aria-label='title'
@@ -295,10 +311,19 @@ const Editor: FC = () => {
 					</div>
 				</div>
 			</div>
-			<button disabled={isLoading} className='btn block ml-auto' onClick={postCard}>
+
+			<button
+				disabled={isLoading}
+				className='btn btn_outline block md:hidden ml-auto w-full md:w-auto mb-2'
+				onClick={() => setIsPreviewActive(true)}>
+				{isLoading ? <Spinner /> : 'Preview'}
+			</button>
+			<button
+				disabled={isLoading}
+				className='btn block ml-auto w-full md:w-auto'
+				onClick={postCard}>
 				{isLoading ? <Spinner /> : 'Save'}
 			</button>
-
 		</div>
 	)
 }
