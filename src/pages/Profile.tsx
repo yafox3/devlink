@@ -45,7 +45,7 @@ const Profile: FC = () => {
 		<div className='py-10 max-w-[400px] flex flex-col justify-center items-center mx-auto'>
 			<h1 className='title mb-8'>Profile</h1>
 
-			<form action='submit' onSubmit={handleProfileUpdate}>
+			<form action='submit' className='w-full' onSubmit={handleProfileUpdate}>
 				<ImageUpload
 					className='mx-auto'
 					isLoading={isLoading}
@@ -61,7 +61,7 @@ const Profile: FC = () => {
 
 				<div className='flex flex-col gap-5 w-full mb-16'>
 					<Input
-						className='min-w-[400px]'
+						className='w-full'
 						placeholder='Enter your first name here'
 						label='First Name'
 						isLoading={isLoading}
@@ -71,7 +71,7 @@ const Profile: FC = () => {
 						}
 					/>
 					<Input
-						className='min-w-[400px]'
+						className='w-full'
 						placeholder='Enter your last name here'
 						label='Last Name'
 						isLoading={isLoading}
