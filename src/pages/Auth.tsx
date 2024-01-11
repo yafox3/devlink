@@ -13,8 +13,8 @@ const Auth: FC = () => {
 	const error = useAppSelector(state => state.auth.error)
 	const { isAuth } = useAuth()
 	const [userData, setUserData] = useState<IUserData>({
-		email: 'aye@mail.ru',
-		password: '123456'
+		email: '',
+		password: ''
 	})
 
 	const toggleLogin = (event: React.MouseEvent<HTMLHyperlinkElementUtils>) => {
@@ -98,3 +98,4 @@ const Auth: FC = () => {
 }
 
 export { Auth }
+
